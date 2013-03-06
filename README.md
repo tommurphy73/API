@@ -116,4 +116,8 @@ When calling a method or service that requires authenticaiton, you must include 
 ## 3.0 Social API
 =================
 
+### 3.1 Add Profile
 
+This API method allows you to share authentication and access information relating to one or more social network accounts. The API will create a new Trustev account for every time is invoked, unless an account already exists for any of the specified social network accounts.
+
+#### 3.1.1 Format
