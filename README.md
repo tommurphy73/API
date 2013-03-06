@@ -358,3 +358,9 @@ This API method allows you to update the current status of the specified transac
     “Message” : string,
     “Code” : int
     }
+
+
+## 5.0 Sample Integration
+=========================
+
+![Trustev](http://tinstring.net/wp-content/uploads/2013/02/Screen-shot-2013-02-06-at-23.43.24.png)
