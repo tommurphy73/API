@@ -49,7 +49,7 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
 
 ### 2.1 Getting a Token
 
-####2.1.1 Format
+#### 2.1.1 Format
 
 <div width=508> URL ----------------------------- https://api.trustev.com/v1/Authentication/GetToken </div>
 
@@ -59,6 +59,28 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
 
 <div width=508> Method	------------------------- <b>POST</b> </div>
 
+#### 2.1.2 Request 
 
+      {
+      “request”: 
+      {
+      “Username” : String,
+      “Password” : String,
+      “Sha256Hash” : String,
+      “Timestamp” : DateTime 
+      }
+      }
+
+#### 2.1.3 Response
+
+      {
+         “Message” : String,
+         “Code” : Int,
+         “Token” : 
+         {
+            “Token” : String,
+            “ExpireAt” : DateTime
+         }
+       }
 
 
