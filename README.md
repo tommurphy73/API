@@ -323,3 +323,21 @@ This API method allows you to create a transaction. The transaction can be creat
       “DeliveryAddressScore” : Decimal,
     }
     }
+
+
+### 4.2 Add Transaction Status
+
+This API method allows you to update the current status of the specified transaction. A newly created transaction is set to an initialised status. Upon a change in status (ie. succesful completion of order, failed payment, refund of order etc.) the transaction must be updated with the equivalent Trustev status.
+
+#### 4.2.1 Format
+
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Transaction/AddStatus          </td></tr>
+ <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
+ <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
+ <tr><td>              Method                   </td><td>    POST                                                      </td></tr>
+</table>
+
+
+
+#### 4.2.2 Request 
