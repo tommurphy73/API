@@ -340,4 +340,21 @@ This API method allows you to update the current status of the specified transac
 
 
 
-#### 4.2.2 Request 
+#### 4.2.2 Request
+
+    {
+    “request” :
+    {
+      “TransactionNumber” : String,
+      “Status” : StatusType,
+      “Reason” : ReasonType,
+      “Comment” : String
+    }
+    }
+
+#### 4.2.3 Response
+
+    {
+    “Message” : string,
+    “Code” : int
+    }
