@@ -63,24 +63,24 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
       {
       “request”: 
       {
-      “Username” : String,
-      “Password” : String,
-      “Sha256Hash” : String,
-      “Timestamp” : DateTime 
+        “Username” : String,
+        “Password” : String,
+        “Sha256Hash” : String,
+        “Timestamp” : DateTime 
       }
       }
 
 #### 2.1.3 Response
 
       {
-         “Message” : String,
-         “Code” : Int,
-         “Token” : 
-         {
-            “Token” : String,
-            “ExpireAt” : DateTime
-         }
-       }
+      “Message” : String,
+      “Code” : Int,
+      “Token” : 
+      {
+        “Token” : String,
+        “ExpireAt” : DateTime
+      }
+      }
 #### 2.1.4 Creating the Password Hash
 
 The generation of the hashed value required for the Password parameter of the request object is a 2 stage process. This process is as follows:
@@ -121,3 +121,34 @@ When calling a method or service that requires authenticaiton, you must include 
 This API method allows you to share authentication and access information relating to one or more social network accounts. The API will create a new Trustev account for every time is invoked, unless an account already exists for any of the specified social network accounts.
 
 #### 3.1.1 Format
+
+
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Social/AddProfile       </td></tr>
+ <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
+ <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
+ <tr><td>              Method                   </td><td>    POST                                               </td></tr>
+</table>
+
+
+#### 3.1.2 Request 
+
+       {
+       “request” :
+       {
+         “SocialNetworks”:
+         [
+         “SocialNetwork”:
+         {
+           “Type” : SocialNetworkType,
+           “Id” : String,
+           “ShortTermAccessToken” : String,
+           “LongTermAccessToken” : String,
+           “ShortTermAccessTokenExpiry” : DateTime,
+           “LongTermAccessTokenExpiry” : DateTime,
+           “Secret” : String
+         }
+         ]
+       }
+       }
+
