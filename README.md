@@ -106,3 +106,11 @@ Create a Sha256Hash of a string in the format of {0}.{1} where {0} is the timest
 
 Create a Sha256Hash of a string in the format of {0}.{1}, where {0} is the result of Stage 1, and {1} is your Application Secret.
 
+### 2.2 Using a Token
+
+Each Token generated is valid for 1 hour from the time of creation. The expiration time of the token is specified in the Token object returned with a succesful GetToken call.
+
+When calling a method or service that requires authenticaiton, you must include both a valid token, and your username.
+
+
+
