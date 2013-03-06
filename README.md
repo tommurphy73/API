@@ -260,4 +260,54 @@ This API method allows you to create a transaction. The transaction can be creat
 
 #### 4.1.2 Request 
 
+    {
+    “request” :
+    {
+      “SocialNetwork”:
+      {
+        “Type” : Facebook OR Twitter OR LinkedIn,
+        “Id” : String 
+      },
+      “Transaction” :
+      {
+        “TransactionNumber” : String,
+        “Currency” : String,
+        “TotalDelivery” : Decimal,
+        “TotalBeforeTax” : Decimal,
+        “TotalDiscount” : Decimal,
+        “TotalTax” : Decimal,
+        “Timestamp” : DateTime,
+        “Addresses” : 
+        [
+        “Address” : 
+        {
+          “Type” : AddressType,
+          “FirstName” : String,
+          “LastName” : String,
+          “Address1” : String,
+          “Address2” : String,
+          “Address3” : String,
+          “City” : String,
+          “State” : String,
+          “PostalCode” : String,
+          “CountryIsoA2Code” : String
+        }
+        ],
+        “Items” :
+        [
+        “Item” : 
+        {
+          “Name” : String,
+          “Url” : String,
+          “ImageUrl” : String,
+          “Quantity” : Int,
+          “TotalBeforeTax” : Decimal,
+          “TotalDiscount” : Decimal,
+          “TotalTax” : Decimal
+        }
+        ]
+      },
+      “SessionId” : Guid
+    }
+    }
     
