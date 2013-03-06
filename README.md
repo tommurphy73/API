@@ -233,4 +233,31 @@ This API method allows you delete one or many social profile accounts from a Tru
       }
       }
 
-  
+#### 3.3.3 Response
+
+     {
+     “Message” : string,
+     “Code” : int
+     }
+     
+     
+## 4.0 Transaction API
+===================
+
+### 4.1 Add Transaction
+
+This API method allows you to create a transaction. The transaction can be created at any point during the checkout process, and will return a Trustev Profile as a return type. The request object for this API method must contain a Trustev Session Id, which is generated and expossed by Trustev.js. Details of how to obtain this SessionId are details in the Trustev.js Integration Document, or on trustev.com.
+
+#### 4.1.1 Format
+
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Transaction/AddTransaction     </td></tr>
+ <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
+ <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
+ <tr><td>              Method                   </td><td>    POST                                                      </td></tr>
+</table>
+
+
+#### 4.1.2 Request 
+
+    
