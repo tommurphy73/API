@@ -113,4 +113,7 @@ Each Token generated is valid for 1 hour from the time of creation. The expirati
 When calling a method or service that requires authenticaiton, you must include both a valid token, and your username.
 
 
+## 3.0 Social API
+=================
+
 
