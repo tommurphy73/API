@@ -173,3 +173,64 @@ This API method allows you to update an existing Trustev account with additional
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
 </table>
 
+#### 3.2.2 Request 
+
+     {
+     “request” :
+     {
+       “Type” : SocialNetworkType,
+       “Id” : String,
+       “SocialNetworks”:
+       [
+       “SocialNetwork”:
+       {
+         “Type” : SocialNetworkType,
+         “Id” : String,
+         “ShortTermAccessToken” : String,
+         “LongTermAccessToken” : String,
+         “ShortTermAccessTokenExpiry” : DateTime,
+         “LongTermAccessTokenExpiry” : DateTime,
+         “Secret” : String
+       }
+       ]
+     }
+     }
+     
+#### 3.2.3 Response
+
+     {
+     “Message” : string,
+     “Code” : int
+     }
+
+### 3.3 Delete Profile
+
+This API method allows you delete one or many social profile accounts from a Trustev account. This will delete the social network authentication data that has been shared with Trustev, and remove any data relevant to the social profile from Trustev’s systems.
+
+#### 3.3.1 Format
+
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Social/DeleteProfile    </td></tr>
+ <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
+ <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
+ <tr><td>              Method                   </td><td>    POST                                               </td></tr>
+</table>
+
+
+#### 3.3.2 Request 
+
+      {
+      “request” :
+      {
+        “SocialNetworks”:
+        [
+        “SocialNetwork”:
+        {
+          “Type” : SocialNetworkType,
+          “Id” : String 
+        }
+        ]
+      }
+      }
+
+  
