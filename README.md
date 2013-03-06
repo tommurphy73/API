@@ -81,5 +81,16 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
             “ExpireAt” : DateTime
          }
        }
+#### 2.1.4 Creating the Password Hash
 
+The generation of the hashed value required for the Password parameter of the request object is a 2 stage process. This process is as follows:
 
+##### <i>Stage 1</i>
+
+Create a Sha256Hash of a string in the format of {0}.{1} where {0} is the timestamp being sent in the request (transformed to a string in the specified format), and {1} your password.
+
+##### <i>Stage 2</i>
+
+Create a Sha256Hash of a string in the format of {0}.{1}, where {0} is the result of Stage 1, and {1} is your Application Secret.
+
+#### 2.1.5 Creating the Request Hash
