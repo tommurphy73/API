@@ -159,4 +159,17 @@ This API method allows you to share authentication and access information relati
       “Code” : int
       }
       
+### 3.2 Update Profile
+
+This API method allows you to update an existing Trustev account with additional social networking accounts. This method requires that a Trustev account exists at least one of the specified social network accounts already attached
+
+#### 3.2.1 Format
+
+
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Social/UpdateProfile    </td></tr>
+ <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
+ <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
+ <tr><td>              Method                   </td><td>    POST                                               </td></tr>
+</table>
 
