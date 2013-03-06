@@ -51,13 +51,12 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
 
 #### 2.1.1 Format
 
-<div width=508> URL ----------------------------- https://api.trustev.com/v1/Authentication/GetToken </div>
-
-<div width=508> Authentication Required			---- <b>No</b> </div>
-
-<div width=508> Format ------------------------- <b>JSON</b> </div>
-
-<div width=508> Method	------------------------- <b>POST</b> </div>
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Authentication/GetToken </td></tr>
+ <tr><td>              Authentication Required  </td><td>    <b>No</b>         </td></tr>
+ <tr><td>              Format                   </td><td>    <b>JSON</b>      </td></tr>
+ <tr><td>              Method                   </td><td>    <b>POST</b>           </td></tr>
+</table>
 
 #### 2.1.2 Request 
 
