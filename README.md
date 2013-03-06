@@ -152,3 +152,11 @@ This API method allows you to share authentication and access information relati
        }
        }
 
+#### 3.1.3 Response
+
+      {
+      “Message” : string,
+      “Code” : int
+      }
+      
+
