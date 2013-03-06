@@ -311,3 +311,15 @@ This API method allows you to create a transaction. The transaction can be creat
     }
     }
     
+#### 4.1.3 Response
+
+    {
+    “Message” : String,
+    “Code” : Int,
+    “TrustProfile” :
+    {
+      “OverallScore” : Decimal,
+      “BillingAddressScore” : Decimal,
+      “DeliveryAddressScore” : Decimal,
+    }
+    }
