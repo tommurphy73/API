@@ -363,4 +363,4 @@ This API method allows you to update the current status of the specified transac
 ## 5.0 Sample Integration
 =========================
 
-<img src="Sample_Integration.png"></img>
+<img src="Assets/Images/Sample_Integration.png"></img>
