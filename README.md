@@ -17,6 +17,7 @@
  <tr><td>    405  </td><td>    Method Not Allowed  </td></tr>
  <tr><td>    406  </td><td>    Not Acceptable      </td></tr>
  <tr><td>    408  </td><td>    Timeout             </td></tr>
+ <tr><td>    500  </td><td>    Unknown Error       </td></tr>
 </table>
 
 
@@ -29,14 +30,14 @@
                                                                                             Notes                 </th></tr>
  <tr><td>    DateTime           </td><td>     YYYY-MM-DD hh:mm:ss         </td><td>         Must always be UTC    </td></tr>
  <tr><td>    DateTime -> String </td><td>     YYYYMMDDhhmmss              </td><td>         Must alwayys be UTC   </td></tr>
- <tr><td>    SocialNetworkType  </td><td>     Facebook, Twitter, LinkedIn </td><td>         Enumerator            </td></tr>
- <tr><td>    AddressType        </td><td>     Billing, Delivery           </td><td>         Enumerator            </td></tr>
- <tr><td>    StatusType         </td><td>     Init, Placed, Refunded, 
-                                              Rejected, Fulfilled, 
-                                              Completed, Refreshed,
-                                              Payment                     </td><td>         Enumerator            </td></tr>
- <tr><td>    ReasonType         </td><td>     System, Fraud, Complaint,
-                                              Remorse, Other              </td><td>         Enumerator            </td></tr>
+ <tr><td>    SocialNetworkType  </td><td>     0 = Facebook<br />1 = Twitter<br />2 = LinkedIn<br />3 = Trustev</td><td>         Enumerator            </td></tr>
+ <tr><td>    AddressType        </td><td>     0 = Standard<br />1 = Billing<br />2 = Delivery           </td><td>         Enumerator            </td></tr>
+ <tr><td>    StatusType         </td><td>     0 = Init<br />1 = Placed<br />2 = Refunded<br /> 
+                                              3 = Rejected<br />4 = Fulfilled<br />
+                                              5 = Completed<br />6 = Refreshed<br />
+                                              7 = Payment                     </td><td>         Enumerator            </td></tr>
+ <tr><td>    ReasonType         </td><td>     0 = System<br />1 = Fraud<br />2 = Complaint<br />
+                                              3 = Remorse<br />4 = Other              </td><td>         Enumerator            </td></tr>
 </table>
 
 ##2.0 Authentication API
@@ -52,7 +53,7 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
 #### 2.1.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Authentication/GetToken </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/AuthenticationService.svc/GetToken </td></tr>
  <tr><td>              Authentication Required  </td><td>    No                                                 </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -99,7 +100,7 @@ The generation of the hashed value required for the Sha256Hash parameter of the 
 
 ##### <i>Stage 1</i>
 
-Create a Sha256Hash of a string in the format of {0}.{1} where {0} is the timestamp being sent in the request (transformed to a string in the specified format),, and {1} your username.
+Create a Sha256Hash of a string in the format of {0}.{1} where {0} is the timestamp being sent in the request (transformed to a string in the specified format), and {1} your username.
 
 
 ##### <i>Stage 2</i>
@@ -124,7 +125,7 @@ This API method allows you to share authentication and access information relati
 
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Social/AddProfile       </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/AddProfile       </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -167,7 +168,7 @@ This API method allows you to update an existing Trustev account with additional
 
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Social/UpdateProfile    </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/UpdateProfile    </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -210,7 +211,7 @@ This API method allows you delete one or many social profile accounts from a Tru
 #### 3.3.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Social/DeleteProfile    </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/DeleteProfile    </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -251,7 +252,7 @@ This API method allows you to create a transaction. The transaction can be creat
 #### 4.1.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Transaction/AddTransaction     </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/AddTransaction     </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
  <tr><td>              Method                   </td><td>    POST                                                      </td></tr>
@@ -278,8 +279,7 @@ This API method allows you to create a transaction. The transaction can be creat
         “TotalTax” : Decimal,
         “Timestamp” : DateTime,
         “Addresses” : 
-        [
-        “Address” : 
+        [ 
         {
           “Type” : AddressType,
           “FirstName” : String,
@@ -295,11 +295,10 @@ This API method allows you to create a transaction. The transaction can be creat
         ],
         “Items” :
         [
-        “Item” : 
         {
           “Name” : String,
-          “Url” : String,
-          “ImageUrl” : String,
+          “URL” : String,
+          “ImageURL” : String,
           “Quantity” : Int,
           “TotalBeforeTax” : Decimal,
           “TotalDiscount” : Decimal,
@@ -332,7 +331,7 @@ This API method allows you to update the current status of the specified transac
 #### 4.2.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/Transaction/AddStatus          </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/AddStatus          </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
  <tr><td>              Method                   </td><td>    POST                                                      </td></tr>
