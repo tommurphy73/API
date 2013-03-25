@@ -139,7 +139,6 @@ This API method allows you to share authentication and access information relati
        {
          “SocialNetworks”:
          [
-         “SocialNetwork”:
          {
            “Type” : SocialNetworkType,
            “Id” : String,
@@ -183,7 +182,6 @@ This API method allows you to update an existing Trustev account with additional
        “Id” : String,
        “SocialNetworks”:
        [
-       “SocialNetwork”:
        {
          “Type” : SocialNetworkType,
          “Id” : String,
@@ -225,7 +223,6 @@ This API method allows you delete one or many social profile accounts from a Tru
       {
         “SocialNetworks”:
         [
-        “SocialNetwork”:
         {
           “Type” : SocialNetworkType,
           “Id” : String 
