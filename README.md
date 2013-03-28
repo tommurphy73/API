@@ -53,7 +53,7 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
 #### 2.1.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/AuthenticationService.svc/GetToken </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/AuthenticationService.svc/rest/GetToken </td></tr>
  <tr><td>              Authentication Required  </td><td>    No                                                 </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -125,7 +125,7 @@ This API method allows you to share authentication and access information relati
 
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/AddProfile       </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/rest/AddProfile       </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -167,7 +167,7 @@ This API method allows you to update an existing Trustev account with additional
 
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/UpdateProfile    </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/rest/UpdateProfile    </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -209,7 +209,7 @@ This API method allows you delete one or many social profile accounts from a Tru
 #### 3.3.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/DeleteProfile    </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/rest/DeleteProfile    </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -249,7 +249,7 @@ This API method allows you to create a transaction. The transaction can be creat
 #### 4.1.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/AddTransaction     </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/rest/AddTransaction     </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
  <tr><td>              Method                   </td><td>    POST                                                      </td></tr>
@@ -328,7 +328,7 @@ This API method allows you to update the current status of the specified transac
 #### 4.2.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/AddStatus          </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/rest/AddStatus          </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
  <tr><td>              Method                   </td><td>    POST                                                      </td></tr>
