@@ -320,12 +320,90 @@ This API method allows you to create a transaction. The transaction can be creat
     }
     }
 
+### 4.2 Update Transaction
 
-### 4.2 Add Transaction Status
+This API method allows you to update a transaction. This method should be used when a transaction that was previously commited to the Trustev system via the AddTransaction API needs to be updated. This method will return a Trustev Profile as a return type. The request object for this API method must contain a Trustev Session Id, which is generated and expossed by Trustev.js. Details of how to obtain this SessionId are details in the Trustev.js Integration Document, or on trustev.com.
+
+#### 4.2.1 Format
+
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/rest/UpdateTransaction     </td></tr>
+ <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
+ <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
+ <tr><td>              Method                   </td><td>    PUT                                                       </td></tr>
+</table>
+
+
+#### 4.2.2 Request 
+
+    {
+    “request” :
+    {
+      “SocialNetwork”:
+      {
+        “Type” : Facebook OR Twitter OR LinkedIn,
+        “Id” : String 
+      },
+      “Transaction” :
+      {
+        “TransactionNumber” : String,
+        “Currency” : String,
+        “TotalDelivery” : Decimal,
+        “TotalBeforeTax” : Decimal,
+        “TotalDiscount” : Decimal,
+        “TotalTax” : Decimal,
+        “Timestamp” : DateTime,
+        “Addresses” : 
+        [ 
+        {
+          “Type” : AddressType,
+          “FirstName” : String,
+          “LastName” : String,
+          “Address1” : String,
+          “Address2” : String,
+          “Address3” : String,
+          “City” : String,
+          “State” : String,
+          “PostalCode” : String,
+          “CountryIsoA2Code” : String
+        }
+        ],
+        “Items” :
+        [
+        {
+          “Name” : String,
+          “URL” : String,
+          “ImageURL” : String,
+          “Quantity” : Int,
+          “TotalBeforeTax” : Decimal,
+          “TotalDiscount” : Decimal,
+          “TotalTax” : Decimal
+        }
+        ]
+      },
+      “SessionId” : Guid
+    }
+    }
+    
+#### 4.2.3 Response
+
+    {
+    “Message” : String,
+    “Code” : Int,
+    “TrustProfile” :
+    {
+      “OverallScore” : Decimal,
+      “BillingAddressScore” : Decimal,
+      “DeliveryAddressScore” : Decimal,
+    }
+    }
+
+
+### 4.3 Add Transaction Status
 
 This API method allows you to update the current status of the specified transaction. A newly created transaction is set to an initialised status. Upon a change in status (ie. succesful completion of order, failed payment, refund of order etc.) the transaction must be updated with the equivalent Trustev status.
 
-#### 4.2.1 Format
+#### 4.3.1 Format
 
 <table>                        
  <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/rest/AddStatus          </td></tr>
@@ -336,7 +414,7 @@ This API method allows you to update the current status of the specified transac
 
 
 
-#### 4.2.2 Request
+#### 4.3.2 Request
 
     {
     “request” :
@@ -348,7 +426,7 @@ This API method allows you to update the current status of the specified transac
     }
     }
 
-#### 4.2.3 Response
+#### 4.3.3 Response
 
     {
     “Message” : string,
