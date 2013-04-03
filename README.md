@@ -64,7 +64,7 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
       {
       “request”: 
       {
-        “Username” : String,
+        “UserName” : String,
         “Password” : String,
         “Sha256Hash” : String,
         “Timestamp” : DateTime 
