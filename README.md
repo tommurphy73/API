@@ -88,7 +88,7 @@ The generation of the hashed value required for the Password parameter of the re
 
 ##### <i>Stage 1</i>
 
-Create a Sha256Hash of a string in the format of {0}.{1} where {0} is the timestamp being sent in the request (transformed to a string in the specified format), and {1} your password.
+Create a Sha256Hash of a string in the format of {0}.{1} where {0} is the timestamp being sent in the request (transformed to a string in the specified format DateTime -> String), and {1} your password.
 
 ##### <i>Stage 2</i>
 
@@ -100,7 +100,7 @@ The generation of the hashed value required for the Sha256Hash parameter of the 
 
 ##### <i>Stage 1</i>
 
-Create a Sha256Hash of a string in the format of {0}.{1} where {0} is the timestamp being sent in the request (transformed to a string in the specified format), and {1} your username.
+Create a Sha256Hash of a string in the format of {0}.{1} where {0} is the timestamp being sent in the request (transformed to a string in the specified formatDateTime -> String), and {1} your username.
 
 
 ##### <i>Stage 2</i>
