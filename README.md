@@ -28,7 +28,7 @@
              Type               </th><th width=308 align=left>   
                                               Format                      </th><th width=308 align=left> 
                                                                                             Notes                 </th></tr>
- <tr><td>    DateTime           </td><td>     YYYY-MM-DD hh:mm:ss         </td><td>         Must always be UTC    </td></tr>
+ <tr><td>    DateTime           </td><td>     YYYY-MM-DD hh:mm:ss (SOAP)<br />Milliseconds since EPOCH (JSON)         </td><td>         Must always be UTC    </td></tr>
  <tr><td>    DateTime -> String </td><td>     YYYYMMDDhhmmss              </td><td>         Must alwayys be UTC   </td></tr>
  <tr><td>    SocialNetworkType  </td><td>     0 = Facebook<br />1 = Twitter<br />2 = LinkedIn<br />3 = Trustev</td><td>         Enumerator            </td></tr>
  <tr><td>    AddressType        </td><td>     0 = Standard<br />1 = Billing<br />2 = Delivery           </td><td>         Enumerator            </td></tr>
