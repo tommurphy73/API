@@ -62,24 +62,24 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
 #### 2.1.2 Request 
 
       {
-      “request”: 
+      "request": 
       {
-        “UserName” : String,
-        “Password” : String,
-        “Sha256Hash” : String,
-        “Timestamp” : DateTime 
+        "UserName" : String,
+        "Password" : String,
+        "Sha256Hash" : String,
+        "Timestamp" : DateTime 
       }
       }
 
 #### 2.1.3 Response
 
       {
-      “Message” : String,
-      “Code” : Int,
-      “Token” : 
+      "Message" : String,
+      "Code" : Int,
+      "Token" : 
       {
-        “Token” : String,
-        “ExpireAt” : DateTime
+        "Token" : String,
+        "ExpireAt" : DateTime
       }
       }
 #### 2.1.4 Creating the Password Hash
@@ -109,10 +109,23 @@ Create a Sha256Hash of a string in the format of {0}.{1}, where {0} is the resul
 
 ### 2.2 Using a Token
 
-Each Token generated is valid for 1 hour from the time of creation. The expiration time of the token is specified in the Token object returned with a succesful GetToken call.
+Each Token generated is valid for 1 hour from the time of creation. The expiration time of the token is specified in the Token object returned with a successful GetToken call.
 
-When calling a method or service that requires authenticaiton, you must include both a valid token, and your username.
+When calling a method or service that requires authentication, you must include a valid token, the current timestamp, and your username.
 
+Any request that requires authentication should first specify the UserName, Timestamp and Token as below.
+
+      {
+      "request": 
+      {
+        "UserName" : String,
+        "Timestamp" : DateTime,
+        "Token" : String
+        .....
+        .....
+        .....
+      }
+      }
 
 ## 3.0 Social API
 =================
@@ -135,18 +148,21 @@ This API method allows you to share authentication and access information relati
 #### 3.1.2 Request 
 
        {
-       “request” :
+       "request" :
        {
-         “SocialNetworks”:
+         "UserName" : String,
+         "Timestamp" : DateTime,
+         "Token" : String,
+         "SocialNetworks":
          [
          {
-           “Type” : SocialNetworkType,
-           “Id” : String,
-           “ShortTermAccessToken” : String,
-           “LongTermAccessToken” : String,
-           “ShortTermAccessTokenExpiry” : DateTime,
-           “LongTermAccessTokenExpiry” : DateTime,
-           “Secret” : String
+           "Type" : SocialNetworkType,
+           "Id" : String,
+           "ShortTermAccessToken" : String,
+           "LongTermAccessToken" : String,
+           "ShortTermAccessTokenExpiry" : DateTime,
+           "LongTermAccessTokenExpiry" : DateTime,
+           "Secret" : String
          }
          ]
        }
@@ -155,8 +171,8 @@ This API method allows you to share authentication and access information relati
 #### 3.1.3 Response
 
       {
-      “Message” : string,
-      “Code” : int
+      "Message" : string,
+      "Code" : int
       }
       
 ### 3.2 Update Profile
@@ -176,20 +192,23 @@ This API method allows you to update an existing Trustev account with additional
 #### 3.2.2 Request 
 
      {
-     “request” :
+     "request" :
      {
-       “Type” : SocialNetworkType,
-       “Id” : String,
-       “SocialNetworks”:
+       "UserName" : String,
+       "Timestamp" : DateTime,
+       "Token" : String,
+       "Type" : SocialNetworkType,
+       "Id" : String,
+       "SocialNetworks":
        [
        {
-         “Type” : SocialNetworkType,
-         “Id” : String,
-         “ShortTermAccessToken” : String,
-         “LongTermAccessToken” : String,
-         “ShortTermAccessTokenExpiry” : DateTime,
-         “LongTermAccessTokenExpiry” : DateTime,
-         “Secret” : String
+         "Type" : SocialNetworkType,
+         "Id" : String,
+         "ShortTermAccessToken" : String,
+         "LongTermAccessToken" : String,
+         "ShortTermAccessTokenExpiry" : DateTime,
+         "LongTermAccessTokenExpiry" : DateTime,
+         "Secret" : String
        }
        ]
      }
@@ -198,8 +217,8 @@ This API method allows you to update an existing Trustev account with additional
 #### 3.2.3 Response
 
      {
-     “Message” : string,
-     “Code” : int
+     "Message" : string,
+     "Code" : int
      }
 
 ### 3.3 Delete Profile
@@ -219,13 +238,16 @@ This API method allows you delete one or many social profile accounts from a Tru
 #### 3.3.2 Request 
 
       {
-      “request” :
+      "request" :
       {
-        “SocialNetworks”:
+        "UserName" : String,
+        "Timestamp" : DateTime,
+        "Token" : String,
+        "SocialNetworks":
         [
         {
-          “Type” : SocialNetworkType,
-          “Id” : String 
+          "Type" : SocialNetworkType,
+          "Id" : String 
         }
         ]
       }
@@ -234,8 +256,8 @@ This API method allows you delete one or many social profile accounts from a Tru
 #### 3.3.3 Response
 
      {
-     “Message” : string,
-     “Code” : int
+     "Message" : string,
+     "Code" : int
      }
      
      
@@ -259,64 +281,67 @@ This API method allows you to create a transaction. The transaction can be creat
 #### 4.1.2 Request 
 
     {
-    “request” :
+    "request" :
     {
-      “SocialNetwork”:
+      "UserName" : String,
+      "Timestamp" : DateTime,
+      "Token" : String,
+      "SocialNetwork":
       {
-        “Type” : Facebook OR Twitter OR LinkedIn,
-        “Id” : String 
+        "Type" : Facebook OR Twitter OR LinkedIn,
+        "Id" : String 
       },
-      “Transaction” :
+      "Transaction" :
       {
-        “TransactionNumber” : String,
-        “Currency” : String,
-        “TotalDelivery” : Decimal,
-        “TotalBeforeTax” : Decimal,
-        “TotalDiscount” : Decimal,
-        “TotalTax” : Decimal,
-        “Timestamp” : DateTime,
-        “Addresses” : 
+        "TransactionNumber" : String,
+        "Currency" : String,
+        "TotalDelivery" : Decimal,
+        "TotalBeforeTax" : Decimal,
+        "TotalDiscount" : Decimal,
+        "TotalTax" : Decimal,
+        "Timestamp" : DateTime,
+        "Addresses" : 
         [ 
         {
-          “Type” : AddressType,
-          “FirstName” : String,
-          “LastName” : String,
-          “Address1” : String,
-          “Address2” : String,
-          “Address3” : String,
-          “City” : String,
-          “State” : String,
-          “PostalCode” : String,
-          “CountryIsoA2Code” : String
+          "Type" : AddressType,
+          "FirstName" : String,
+          "LastName" : String,
+          "Address1" : String,
+          "Address2" : String,
+          "Address3" : String,
+          "City" : String,
+          "State" : String,
+          "PostalCode" : String,
+          "CountryIsoA2Code" : String
         }
         ],
-        “Items” :
+        "Items" :
         [
         {
-          “Name” : String,
-          “URL” : String,
-          “ImageURL” : String,
-          “Quantity” : Int,
-          “TotalBeforeTax” : Decimal,
-          “TotalDiscount” : Decimal,
-          “TotalTax” : Decimal
+          "Name" : String,
+          "URL" : String,
+          "ImageURL" : String,
+          "Quantity" : Int,
+          "TotalBeforeTax" : Decimal,
+          "TotalDiscount" : Decimal,
+          "TotalTax" : Decimal
         }
         ]
       },
-      “SessionId” : Guid
+      "SessionId" : Guid
     }
     }
     
 #### 4.1.3 Response
 
     {
-    “Message” : String,
-    “Code” : Int,
-    “TrustProfile” :
+    "Message" : String,
+    "Code" : Int,
+    "TrustProfile" :
     {
-      “OverallScore” : Decimal,
-      “BillingAddressScore” : Decimal,
-      “DeliveryAddressScore” : Decimal,
+      "OverallScore" : Decimal,
+      "BillingAddressScore" : Decimal,
+      "DeliveryAddressScore" : Decimal,
     }
     }
 
@@ -337,64 +362,67 @@ This API method allows you to update a transaction. This method should be used w
 #### 4.2.2 Request 
 
     {
-    “request” :
+    "request" :
     {
-      “SocialNetwork”:
+      "UserName" : String,
+      "Timestamp" : DateTime,
+      "Token" : String,
+      "SocialNetwork":
       {
-        “Type” : Facebook OR Twitter OR LinkedIn,
-        “Id” : String 
+        "Type" : Facebook OR Twitter OR LinkedIn,
+        "Id" : String 
       },
-      “Transaction” :
+      "Transaction" :
       {
-        “TransactionNumber” : String,
-        “Currency” : String,
-        “TotalDelivery” : Decimal,
-        “TotalBeforeTax” : Decimal,
-        “TotalDiscount” : Decimal,
-        “TotalTax” : Decimal,
-        “Timestamp” : DateTime,
-        “Addresses” : 
+        "TransactionNumber" : String,
+        "Currency" : String,
+        "TotalDelivery" : Decimal,
+        "TotalBeforeTax" : Decimal,
+        "TotalDiscount" : Decimal,
+        "TotalTax" : Decimal,
+        "Timestamp" : DateTime,
+        "Addresses" : 
         [ 
         {
-          “Type” : AddressType,
-          “FirstName” : String,
-          “LastName” : String,
-          “Address1” : String,
-          “Address2” : String,
-          “Address3” : String,
-          “City” : String,
-          “State” : String,
-          “PostalCode” : String,
-          “CountryIsoA2Code” : String
+          "Type" : AddressType,
+          "FirstName" : String,
+          "LastName" : String,
+          "Address1" : String,
+          "Address2" : String,
+          "Address3" : String,
+          "City" : String,
+          "State" : String,
+          "PostalCode" : String,
+          "CountryIsoA2Code" : String
         }
         ],
-        “Items” :
+        "Items" :
         [
         {
-          “Name” : String,
-          “URL” : String,
-          “ImageURL” : String,
-          “Quantity” : Int,
-          “TotalBeforeTax” : Decimal,
-          “TotalDiscount” : Decimal,
-          “TotalTax” : Decimal
+          "Name" : String,
+          "URL" : String,
+          "ImageURL" : String,
+          "Quantity" : Int,
+          "TotalBeforeTax" : Decimal,
+          "TotalDiscount" : Decimal,
+          "TotalTax" : Decimal
         }
         ]
       },
-      “SessionId” : Guid
+      "SessionId" : Guid
     }
     }
     
 #### 4.2.3 Response
 
     {
-    “Message” : String,
-    “Code” : Int,
-    “TrustProfile” :
+    "Message" : String,
+    "Code" : Int,
+    "TrustProfile" :
     {
-      “OverallScore” : Decimal,
-      “BillingAddressScore” : Decimal,
-      “DeliveryAddressScore” : Decimal,
+      "OverallScore" : Decimal,
+      "BillingAddressScore" : Decimal,
+      "DeliveryAddressScore" : Decimal,
     }
     }
 
@@ -417,20 +445,23 @@ This API method allows you to update the current status of the specified transac
 #### 4.3.2 Request
 
     {
-    “request” :
+    "request" :
     {
-      “TransactionNumber” : String,
-      “Status” : StatusType,
-      “Reason” : ReasonType,
-      “Comment” : String
+      "UserName" : String,
+      "Timestamp" : DateTime,
+      "Token" : String,
+      "TransactionNumber" : String,
+      "Status" : StatusType,
+      "Reason" : ReasonType,
+      "Comment" : String
     }
     }
 
 #### 4.3.3 Response
 
     {
-    “Message” : string,
-    “Code” : int
+    "Message" : string,
+    "Code" : int
     }
 
 
