@@ -5,23 +5,11 @@
 
 ### 1.1 Response Codes
 
-<table>
- <tr><th width=308 align=left>   
-             Code </th><th width=308 align=left> 
-                               Explanation         </th></tr>
-                               
- <tr><td>    200  </td><td>    OK                  </td></tr>
- <tr><td>    400  </td><td>    Bad Request         </td></tr>
- <tr><td>    401  </td><td>    Not Authorised      </td></tr>
- <tr><td>    403  </td><td>    Forbidden           </td></tr>
- <tr><td>    405  </td><td>    Method Not Allowed  </td></tr>
- <tr><td>    406  </td><td>    Not Acceptable      </td></tr>
- <tr><td>    408  </td><td>    Timeout             </td></tr>
- <tr><td>    500  </td><td>    Unknown Error       </td></tr>
-</table>
-
+The Trustev API returns standard HTTP codes in the response header. Additional information is available in the HTTP response message header.
 
 ### 1.2 API Formats
+
+The following formats are applicable when interacting with the Trustev API. Please note that certain formats are different when using a JSON content type, as opposed to a content type of XML. These are highlighted in the table below.
 
 <table>
  <tr><th width=308 align=left> 
@@ -43,7 +31,7 @@
 ##2.0 Authentication API
 ========================
 
-The Trustev API is secured using Token Authentication. Where an API method requires authentication, a valid token must be provided.
+The Trustev API is secured using Token Authentication. Where an API method requires authentication, a valid token must be provided. Any API method that requires authentication is clearly marked.
 
 
 Details of how to retrieve a token are below. Your Username, Password and Application Secret are all available on the Trustev Developer Portal.
@@ -53,7 +41,7 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
 #### 2.1.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/AuthenticationService.svc/rest/GetToken </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/AuthenticationService.svc/rest/Token</td></tr>
  <tr><td>              Authentication Required  </td><td>    No                                                 </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -62,25 +50,26 @@ Details of how to retrieve a token are below. Your Username, Password and Applic
 #### 2.1.2 Request 
 
       {
-      "request": 
-      {
-        "UserName" : String,
-        "Password" : String,
-        "Sha256Hash" : String,
-        "Timestamp" : DateTime 
-      }
+        "request": 
+        {
+          "UserName" : String,
+          "Password" : String,
+          "Sha256Hash" : String,
+          "Timestamp" : DateTime 
+        }
       }
 
 #### 2.1.3 Response
 
       {
-      "Message" : String,
-      "Code" : Int,
-      "Token" : 
-      {
-        "Token" : String,
-        "ExpireAt" : DateTime
-      }
+        "Message" : String,
+        "Code" : Int,
+        "Timestamp" : DateTime,
+        "Token" : 
+        {
+          "APIToken" : String,
+          "ExpireAt" : DateTime
+        }
       }
 #### 2.1.4 Creating the Password Hash
 
@@ -111,21 +100,16 @@ Create a Sha256Hash of a string in the format of {0}.{1}, where {0} is the resul
 
 Each Token generated is valid for 1 hour from the time of creation. The expiration time of the token is specified in the Token object returned with a successful GetToken call.
 
-When calling a method or service that requires authentication, you must include a valid token, the current timestamp, and your username.
+When calling a method or service that requires authentication, you must include a valid token, and your username in the X-Authorization header of the request.
 
-Any request that requires authentication should first specify the UserName, Timestamp and Token as below.
+For example, the headers of any request that requires authentication should include the following
 
-      {
-      "request": 
-      {
-        "UserName" : String,
-        "Timestamp" : DateTime,
-        "Token" : String
-        .....
-        .....
-        .....
-      }
-      }
+     .......
+     .......
+     Content-Type: application/json
+     X-Authorization: <UserName> <Token>
+     .......
+     .......
 
 ## 3.0 Social API
 =================
@@ -138,7 +122,7 @@ This API method allows you to share authentication and access information relati
 
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/rest/AddProfile       </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/SocialService.svc/rest/Profile       </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
  <tr><td>              Method                   </td><td>    POST                                               </td></tr>
@@ -150,9 +134,6 @@ This API method allows you to share authentication and access information relati
        {
        "request" :
        {
-         "UserName" : String,
-         "Timestamp" : DateTime,
-         "Token" : String,
          "SocialNetworks":
          [
          {
@@ -170,10 +151,7 @@ This API method allows you to share authentication and access information relati
 
 #### 3.1.3 Response
 
-      {
-      "Message" : string,
-      "Code" : int
-      }
+ No object is returned.
       
 ### 3.2 Update Profile
 
@@ -183,10 +161,10 @@ This API method allows you to update an existing Trustev account with additional
 
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/rest/UpdateProfile    </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/SocialService.svc/rest/Profile/[SocialNetworkType]/[Id]    </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
- <tr><td>              Method                   </td><td>    POST                                               </td></tr>
+ <tr><td>              Method                   </td><td>    PUT                                               </td></tr>
 </table>
 
 #### 3.2.2 Request 
@@ -194,11 +172,6 @@ This API method allows you to update an existing Trustev account with additional
      {
      "request" :
      {
-       "UserName" : String,
-       "Timestamp" : DateTime,
-       "Token" : String,
-       "Type" : SocialNetworkType,
-       "Id" : String,
        "SocialNetworks":
        [
        {
@@ -216,10 +189,7 @@ This API method allows you to update an existing Trustev account with additional
      
 #### 3.2.3 Response
 
-     {
-     "Message" : string,
-     "Code" : int
-     }
+No object is returned.
 
 ### 3.3 Delete Profile
 
@@ -228,37 +198,20 @@ This API method allows you delete one or many social profile accounts from a Tru
 #### 3.3.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/SocialService.svc/rest/DeleteProfile    </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/SocialService.svc/rest/Profile/[SocialNetworkType]/[Id]    </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                               </td></tr>
- <tr><td>              Method                   </td><td>    POST                                               </td></tr>
+ <tr><td>              Method                   </td><td>    DELETE                                              </td></tr>
 </table>
 
 
 #### 3.3.2 Request 
 
-      {
-      "request" :
-      {
-        "UserName" : String,
-        "Timestamp" : DateTime,
-        "Token" : String,
-        "SocialNetworks":
-        [
-        {
-          "Type" : SocialNetworkType,
-          "Id" : String 
-        }
-        ]
-      }
-      }
+No object is required.
 
 #### 3.3.3 Response
 
-     {
-     "Message" : string,
-     "Code" : int
-     }
+No object is returned.
      
      
 ## 4.0 Transaction API
@@ -271,7 +224,7 @@ This API method allows you to create a transaction. The transaction can be creat
 #### 4.1.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/rest/AddTransaction     </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/TransactionService.svc/rest/Transaction     </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
  <tr><td>              Method                   </td><td>    POST                                                      </td></tr>
@@ -283,9 +236,7 @@ This API method allows you to create a transaction. The transaction can be creat
     {
     "request" :
     {
-      "UserName" : String,
-      "Timestamp" : DateTime,
-      "Token" : String,
+      "TransactionNumber" : String,
       "SocialNetwork":
       {
         "Type" : Facebook OR Twitter OR LinkedIn,
@@ -293,7 +244,6 @@ This API method allows you to create a transaction. The transaction can be creat
       },
       "Transaction" :
       {
-        "TransactionNumber" : String,
         "Currency" : String,
         "TotalDelivery" : Decimal,
         "TotalBeforeTax" : Decimal,
@@ -352,7 +302,7 @@ This API method allows you to update a transaction. This method should be used w
 #### 4.2.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/rest/UpdateTransaction     </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/TransactionService.svc/rest/Transaction/[Id]     </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
  <tr><td>              Method                   </td><td>    PUT                                                       </td></tr>
@@ -364,9 +314,6 @@ This API method allows you to update a transaction. This method should be used w
     {
     "request" :
     {
-      "UserName" : String,
-      "Timestamp" : DateTime,
-      "Token" : String,
       "SocialNetwork":
       {
         "Type" : Facebook OR Twitter OR LinkedIn,
@@ -374,7 +321,6 @@ This API method allows you to update a transaction. This method should be used w
       },
       "Transaction" :
       {
-        "TransactionNumber" : String,
         "Currency" : String,
         "TotalDelivery" : Decimal,
         "TotalBeforeTax" : Decimal,
@@ -434,10 +380,10 @@ This API method allows you to update the current status of the specified transac
 #### 4.3.1 Format
 
 <table>                        
- <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1/TransactionService.svc/rest/AddStatus          </td></tr>
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/TransactionService.svc/rest/Transaction/[Id]/Status          </td></tr>
  <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
  <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
- <tr><td>              Method                   </td><td>    POST                                                      </td></tr>
+ <tr><td>              Method                   </td><td>    PUT                                                      </td></tr>
 </table>
 
 
@@ -447,10 +393,6 @@ This API method allows you to update the current status of the specified transac
     {
     "request" :
     {
-      "UserName" : String,
-      "Timestamp" : DateTime,
-      "Token" : String,
-      "TransactionNumber" : String,
       "Status" : StatusType,
       "Reason" : ReasonType,
       "Comment" : String
@@ -459,13 +401,53 @@ This API method allows you to update the current status of the specified transac
 
 #### 4.3.3 Response
 
-    {
-    "Message" : string,
-    "Code" : int
-    }
+No object is returned.
 
 
-## 5.0 Sample Integration
+## 5.0 Profile API
+=========================
+
+### 5.1 Get Profile
+
+This API method allows you to retrieve a list of current and historical scores for a specified Social Profile. The social network account details must have previously been added using the Social API. You may specify the number of days which you wish to search for a specified profile. This can be specified in the query string and is equal to the number of days, prior to the current date, that you wish to search through. If this parameter is not specified, the query defaults to 7 days.
+
+#### 5.1.1 Format
+
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/ProfileService.svc/rest/[SocialNetworkType]/[Id]?days=[Days]          </td></tr>
+ <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
+ <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
+ <tr><td>              Method                   </td><td>    GET                                                      </td></tr>
+</table>
+
+
+
+#### 5.1.2 Request
+
+No object is required.
+
+#### 5.1.3 Response
+
+     {
+       "Message" : String,
+       "Code" : Int,
+       "Profiles" :
+       [
+       {
+        Scores :
+        [
+          {
+           "Source" : <Enum>,
+           "Parameter" : <Enum>,
+           "Score" : <Decimal>
+          }
+        ]
+       }
+       ]
+     }
+
+
+## 6.0 Sample Integration
 =========================
 
 <img src="Assets/Images/Sample_Integration.png"></img>
