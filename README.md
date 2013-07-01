@@ -16,16 +16,39 @@ The following formats are applicable when interacting with the Trustev API. Plea
              Type               </th><th width=308 align=left>   
                                               Format                      </th><th width=308 align=left> 
                                                                                             Notes                 </th></tr>
- <tr><td>    DateTime           </td><td>     YYYY-MM-DD hh:mm:ss (SOAP)<br />Milliseconds since EPOCH (JSON)         </td><td>         Must always be UTC    </td></tr>
- <tr><td>    DateTime -> String </td><td>     YYYYMMDDhhmmss              </td><td>         Must alwayys be UTC   </td></tr>
- <tr><td>    SocialNetworkType  </td><td>     0 = Facebook<br />1 = Twitter<br />2 = LinkedIn<br />3 = Trustev</td><td>         Enumerator            </td></tr>
- <tr><td>    AddressType        </td><td>     0 = Standard<br />1 = Billing<br />2 = Delivery           </td><td>         Enumerator            </td></tr>
- <tr><td>    StatusType         </td><td>     0 = Init<br />1 = Placed<br />2 = Refunded<br /> 
-                                              3 = Rejected<br />4 = Fulfilled<br />
-                                              5 = Completed<br />6 = Refreshed<br />
-                                              7 = Payment                     </td><td>         Enumerator            </td></tr>
- <tr><td>    ReasonType         </td><td>     0 = System<br />1 = Fraud<br />2 = Complaint<br />
-                                              3 = Remorse<br />4 = Other              </td><td>         Enumerator            </td></tr>
+ <tr><td>    DateTime                        </td><td>     YYYY-MM-DD hh:mm:ss (SOAP)<br />Milliseconds since EPOCH (JSON)         </td><td>         Must always be UTC    </td></tr>
+ <tr><td>    DateTime -> String              </td><td>     YYYYMMDDhhmmss              </td><td>         Must alwayys be UTC   </td></tr>
+ <tr><td>    SocialNetworkType               </td><td>     0 = Facebook<br />1 = Twitter<br />2 = LinkedIn<br />3 = Trustev</td><td>         Enumerator            </td></tr>
+ <tr><td>    AddressType                     </td><td>     0 = Standard<br />1 = Billing<br />2 = Delivery           </td><td>         Enumerator            </td></tr>
+ <tr><td>    StatusType                      </td><td>     0 = Init<br />1 = Placed<br />2 = Refunded<br /> 
+                                                           3 = Rejected<br />4 = Fulfilled<br />
+                                                           5 = Completed<br />6 = Refreshed<br />
+                                                           7 = Payment                     </td><td>         Enumerator            </td></tr>
+ <tr><td>    ReasonType                      </td><td>     0 = System<br />1 = Fraud<br />2 = Complaint<br />
+                                                           3 = Remorse<br />4 = Other              </td><td>         Enumerator            </td></tr>
+ <tr><td>    TrustevProfileScoreSource       </td><td>     0 = Address<br />
+                                                           1 = Behaviour<br />
+                                                           2 = Device<br />
+                                                           3 = Email<br />
+                                                           4 = Facebook <br />
+                                                           5 = IP<br />
+                                                           6 = Transaction<br />
+                                                           7 = Trustev<br />
+                                                           8 = Velocity                             </td><td>         Enumerator            </td></tr>
+ <tr><td>    TrustevProfileScoreParameter    </td><td>     0 = Overall<br />
+                                                           1 = Billing<br />
+                                                           2 = Delivery<br />
+                                                           3 = Input<br />
+                                                           4 = Domain<br />
+                                                           5 = Address<br />
+                                                           6 = IP<br />
+                                                           7 = Proxy<br />
+                                                           8 = VPN<br />
+                                                           9 = Value<br />
+                                                           10 = Velocity<br />
+                                                           11 = Legitimacy<br />
+                                                           12 = Pattern<br />
+                                                           13 = Hustle</td><td>         Enumerator            </td></tr>
 </table>
 
 ##2.0 Authentication API
@@ -289,9 +312,20 @@ This API method allows you to create a transaction. The transaction can be creat
     "Code" : Int,
     "TrustProfile" :
     {
-      "OverallScore" : Decimal,
-      "BillingAddressScore" : Decimal,
-      "DeliveryAddressScore" : Decimal,
+      "Sources" :
+      [
+      {
+         "Source" : Enum <TrustevProfileScoreSource>,
+         "Scores" :
+         [
+         {
+            "Parameter" : Enum <TrustevProfileScoreParameter>,
+            "Confidence" : Decimal,
+            "Score" : Decimal
+         }
+         ]
+      }
+      ]
     }
     }
 
@@ -366,9 +400,20 @@ This API method allows you to update a transaction. This method should be used w
     "Code" : Int,
     "TrustProfile" :
     {
-      "OverallScore" : Decimal,
-      "BillingAddressScore" : Decimal,
-      "DeliveryAddressScore" : Decimal,
+      "Sources" :
+      [
+      {
+         "Source" : Enum <TrustevProfileScoreSource>,
+         "Scores" :
+         [
+         {
+            "Parameter" : Enum <TrustevProfileScoreParameter>,
+            "Confidence" : Decimal,
+            "Score" : Decimal
+         }
+         ]
+      }
+      ]
     }
     }
 
