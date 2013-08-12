@@ -273,7 +273,7 @@ No object is returned.
 
 ### 4.1 Add Transaction
 
-This API method allows you to create a transaction. The transaction can be created at any point during the checkout process, and will return a Trustev Profile as a return type. The request object for this API method must contain a Trustev Session Id, which is generated and expossed by Trustev.js. Details of how to obtain this SessionId are details in the Trustev.js Integration Document, or on trustev.com.
+This API method allows you to create a transaction. The transaction can be created at any point during the checkout process. The request object for this API method must contain a Trustev Session Id, which is generated and expossed by Trustev.js. Details of how to obtain this SessionId are details in the Trustev.js Integration Document, or on trustev.com.
 
 #### 4.1.1 Format
 
@@ -338,27 +338,8 @@ This API method allows you to create a transaction. The transaction can be creat
     
 #### 4.1.3 Response
 
-    {
-    "Message" : String,
-    "Code" : Int,
-    "TrustProfile" :
-    {
-      "Sources" :
-      [
-      {
-         "Source" : Enum <TrustevProfileScoreSource>,
-         "Scores" :
-         [
-         {
-            "Parameter" : Enum <TrustevProfileScoreParameter>,
-            "Confidence" : Decimal,
-            "Score" : Decimal
-         }
-         ]
-      }
-      ]
-    }
-    }
+ No object is returned.
+
 
 ### 4.2 Update Transaction
 
@@ -426,27 +407,7 @@ This API method allows you to update a transaction. This method should be used w
     
 #### 4.2.3 Response
 
-    {
-    "Message" : String,
-    "Code" : Int,
-    "TrustProfile" :
-    {
-      "Sources" :
-      [
-      {
-         "Source" : Enum <TrustevProfileScoreSource>,
-         "Scores" :
-         [
-         {
-            "Parameter" : Enum <TrustevProfileScoreParameter>,
-            "Confidence" : Decimal,
-            "Score" : Decimal
-         }
-         ]
-      }
-      ]
-    }
-    }
+ No object is returned.
 
 
 ### 4.3 Add Transaction Status
