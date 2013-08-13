@@ -296,7 +296,7 @@ This API method allows you to create a transaction. The transaction can be creat
         "Type" : Facebook OR Twitter OR LinkedIn,
         "Id" : String 
       },
-      "Transaction" :
+      "TransactionData" :
       {
         "Currency" : String,
         "TotalDelivery" : Decimal,
@@ -304,7 +304,7 @@ This API method allows you to create a transaction. The transaction can be creat
         "TotalDiscount" : Decimal,
         "TotalTax" : Decimal,
         "Timestamp" : DateTime,
-        "Addresses" : 
+        "Address" : 
         [ 
         {
           "Type" : AddressType,
@@ -319,7 +319,7 @@ This API method allows you to create a transaction. The transaction can be creat
           "CountryIsoA2Code" : String
         }
         ],
-        "Items" :
+        "Item" :
         [
         {
           "Name" : String,
@@ -365,7 +365,7 @@ This API method allows you to update a transaction. This method should be used w
         "Type" : Facebook OR Twitter OR LinkedIn,
         "Id" : String 
       },
-      "Transaction" :
+      "TransactionData" :
       {
         "Currency" : String,
         "TotalDelivery" : Decimal,
@@ -373,7 +373,7 @@ This API method allows you to update a transaction. This method should be used w
         "TotalDiscount" : Decimal,
         "TotalTax" : Decimal,
         "Timestamp" : DateTime,
-        "Addresses" : 
+        "Address" : 
         [ 
         {
           "Type" : AddressType,
@@ -388,7 +388,7 @@ This API method allows you to update a transaction. This method should be used w
           "CountryIsoA2Code" : String
         }
         ],
-        "Items" :
+        "Item" :
         [
         {
           "Name" : String,
