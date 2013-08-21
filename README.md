@@ -410,11 +410,39 @@ This API method allows you to update a transaction. This method should be used w
  No object is returned.
 
 
-### 4.3 Add Transaction Status
+### 4.3 Add Transaction BIN
+
+This API method allows you to add a BIN Number to a transaction. The BIN Number, which is the first 6 digits of the credit or debit card used for payment, can be used by Trustev to help validate the location of the transaction. The BIN Number is not restricted by PCI Compliance regulations.
+
+#### 4.3.1 Format
+
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/TransactionService.svc/rest/Transaction/[Id]/BIN          </td></tr>
+ <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
+ <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
+ <tr><td>              Method                   </td><td>    PUT                                                      </td></tr>
+</table>
+
+
+#### 4.3.2 Request
+
+    {
+    "request" :
+      {
+        "BINNumber" : String
+      }
+    }
+
+#### 4.3.3 Response
+
+No object is returned.
+
+
+### 4.4 Add Transaction Status
 
 This API method allows you to update the current status of the specified transaction. A newly created transaction is set to an initialised status. Upon a change in status (ie. succesful completion of order, failed payment, refund of order etc.) the transaction must be updated with the equivalent Trustev status.
 
-#### 4.3.1 Format
+#### 4.4.1 Format
 
 <table>                        
  <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/TransactionService.svc/rest/Transaction/[Id]/Status          </td></tr>
@@ -425,7 +453,7 @@ This API method allows you to update the current status of the specified transac
 
 
 
-#### 4.3.2 Request
+#### 4.4.2 Request
 
     {
     "request" :
@@ -436,9 +464,10 @@ This API method allows you to update the current status of the specified transac
     }
     }
 
-#### 4.3.3 Response
+#### 4.4.3 Response
 
 No object is returned.
+
 
 
 ## 5.0 Profile API
