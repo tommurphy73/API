@@ -1,7 +1,11 @@
 ##1.0 API Introduction
 ======================
 
-</br>
+## Sample Integration Checkout Flow
+=========================
+
+<img src="Assets/Images/APIIntegrationFlowV1_1.png"></img>
+
 
 ### 1.1 Response Codes
 
@@ -512,8 +516,3 @@ No object is required.
        ]
      }
 
-
-## 6.0 Sample Integration
-=========================
-
-<img src="Assets/Images/Sample_Integration.png"></img>
