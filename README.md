@@ -11,6 +11,22 @@
 
 The Trustev API returns standard HTTP codes in the response header. Additional information is available in the HTTP response message header.
 
+
+<table> 
+ <tr><th width=308 align=left>    Code   </th><th width=308 align=left>  Explanation    </th></tr>
+ <tr><td>                        100    </td><td>                  Continue            </td></tr>
+ <tr><td>                        200    </td><td>                  OK                  </td></tr>
+ <tr><td>                        400    </td><td>                  Bad Request         </td></tr>
+ <tr><td>                        401    </td><td>                  Not Authorised      </td></tr>
+ <tr><td>                        403    </td><td>                  Forbidden           </td></tr>
+ <tr><td>                        405    </td><td>                  Method Not Allowed  </td></tr>
+ <tr><td>                        406    </td><td>                  Not Acceptable      </td></tr>
+ <tr><td>                        408    </td><td>                  Timeout             </td></tr>
+ <tr><td>                        500    </td><td>                  Unknown             </td></tr>
+</table>
+
+
+
 ### 1.2 API Formats
 
 The following formats are applicable when interacting with the Trustev API. Please note that certain formats are different when using a JSON content type, as opposed to a content type of XML. These are highlighted in the table below.
