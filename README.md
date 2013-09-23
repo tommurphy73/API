@@ -71,36 +71,6 @@ The following formats are applicable when interacting with the Trustev API. Plea
                                                            13 = Hustle</td><td>         Enumerator            </td></tr>
 </table>
 
-### 1.3 Phased Integration
-
-During our initial integration efforts with our early partners, Trustev are promoting a phased integration approach.
-This phased approach ensures that your integration with Trustev goes as smoothly as possible, and allows us to
-assist with you any issuees prior to go live.
-
-
-The integration of Trustev into your site is completed using a simple 3 stage process:
-
-<b>Phase 1</b>
-
-Phase 1 involves integrating our simple JS module into your site, and letting this data collection engine 
-run for  about 2 weeks. No decisions are made in this phase. This ensures that no JS modules conflict with 
-already used libraries, and allows Trustev to get a profile of the type of customer the interacts with your 
-site. This data collection helps us to tweak any weightings & thresholds together with you, and ensures 
-appropriate scoring when you turn Trustev decisioning on.
-
-<b>Phase 2</b>
-
-Phase 2, which also typically runs for 2 weeks, is our API integration. This involves integrating with our 
-social and transaction APIs for 2 weeks to ensure that the most suitable data is being shared. It also allows 
-Trustev to build up an accurate profile of the type of transactions being run through your site. A Trustev 
-score is returned, but we would not expect you to alter a customer's experience or checkout based on this.
-
-<b>Phase 3</b>
-
-Phase 3 is essentially where the whole Trustev system is turned on, and you can allow or block customers based 
-on the Trustev score. At this point, Trustev has an accurate profile of your customers, and has confidence 
-that the integration has worked as expected.
-
 
 ##2.0 Authentication API
 ========================
@@ -494,10 +464,56 @@ No object is returned.
 =========================
 
 ### 5.1 Get Profile
+This API method allows you to retrieve a score based upon a specified Transaction Id/Number. This method requires that you have already created the Transaction by using the TransactionService to add a transaction to the Trustev system. If you have also added additional information, such as a social profile and BIN Number to the transaction in other API calls, these will be taken into account when returning a score to your system. The overall score, which is a combination of sub-scores from the Trustev system, and a final recommendation from Trustev with regards to the Transaction/Session is determined by finding reading the Score from the Sources object where the following conditions are met:
+<ul>
+ <li>Profile->Sources->Source = Trustev || 7</li>
+ <li>Profile->Sources->Scores->Parameter = Overall || 0</li>
+</ul>
+
+#### 5.1.1 Format
+
+<table>                        
+ <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/ProfileService.svc/rest/Transaction/[Id]          </td></tr>
+ <tr><td>              Authentication Required  </td><td>    Yes                                                       </td></tr>
+ <tr><td>              Format                   </td><td>    JSON                                                      </td></tr>
+ <tr><td>              Method                   </td><td>    GET                                                      </td></tr>
+</table>
+
+
+#### 5.1.2 Request
+
+No object is required.
+
+#### 5.1.3 Response
+
+     {
+       "Code" : Int,
+       "Message" : String,
+       "Profile":
+       {
+         "Sources":
+         [
+           {
+             "Scores":
+             [
+               {
+                 "Confidence" : Decimal,
+                 "Parameter" : <Enum> TrustevProfileScoreParameter,
+                 "Score" : Decimal
+               }
+             ],
+             "Source" : <Enum>TrustevProfileScoreSource
+           }
+         ]
+       }
+     }
+
+
+### 5.2 Get Profiles
 
 This API method allows you to retrieve a list of current and historical scores for a specified Social Profile. The social network account details must have previously been added using the Social API. You may specify the number of days which you wish to search for a specified profile. This can be specified in the query string and is equal to the number of days, prior to the current date, that you wish to search through. If this parameter is not specified, the query defaults to 7 days.
 
-#### 5.1.1 Format
+#### 5.2.1 Format
 
 <table>                        
  <tr><td width=308>    URL                      </td><td>    https://api.trustev.com/v1.1/ProfileService.svc/rest/[SocialNetworkType]/[Id]?days=[Days]          </td></tr>
@@ -508,11 +524,11 @@ This API method allows you to retrieve a list of current and historical scores f
 
 
 
-#### 5.1.2 Request
+#### 5.2.2 Request
 
 No object is required.
 
-#### 5.1.3 Response
+#### 5.2.3 Response
 
      {
        "Message" : String,
