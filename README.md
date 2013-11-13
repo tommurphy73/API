@@ -142,7 +142,7 @@ Create a Sha256Hash of a string in the format of {0}.{1}, where {0} is the resul
 
 ### 2.2 Using a Token
 
-Each Token generated is valid for 1 hour from the time of creation. The expiration time of the token is specified in the Token object returned with a successful GetToken call.
+Each Token generated is valid for 30 minutes from the time of creation. The expiration time of the token is specified in the Token object returned with a successful GetToken call.
 
 When calling a method or service that requires authentication, you must include a valid token, and your username in the X-Authorization header of the request.
 
@@ -263,7 +263,7 @@ No object is returned.
 
 ### 4.1 Add Transaction
 
-This API method allows you to create a transaction. The transaction can be created at any point during the checkout process. The request object for this API method must contain a Trustev Session Id, which is generated and expossed by Trustev.js. Details of how to obtain this SessionId are details in the Trustev.js Integration Document, or on trustev.com.
+This API method allows you to create a transaction. The transaction can be created at any point during the checkout process. The request object for this API method must contain a Trustev Session Id, which is generated and exposed by Trustev.js. Details of how to obtain this SessionId are details in the Trustev.js Integration Document, or on trustev.com.
 
 #### 4.1.1 Format
 
