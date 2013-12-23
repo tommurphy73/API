@@ -293,6 +293,7 @@ This API method allows you to create a transaction. The transaction can be creat
         "TotalBeforeTax" : Decimal,
         "TotalDiscount" : Decimal,
         "TotalTax" : Decimal,
+        "TotalTransactionValue" : Decimal,
         "Timestamp" : DateTime,
         "Address" : 
         [ 
@@ -318,7 +319,8 @@ This API method allows you to create a transaction. The transaction can be creat
           "Quantity" : Int,
           "TotalBeforeTax" : Decimal,
           "TotalDiscount" : Decimal,
-          "TotalTax" : Decimal
+          "TotalTax" : Decimal,
+          "TotalItemValue" : Decimal
         }
         ]
       },
@@ -362,6 +364,7 @@ This API method allows you to update a transaction. This method should be used w
         "TotalBeforeTax" : Decimal,
         "TotalDiscount" : Decimal,
         "TotalTax" : Decimal,
+        "TotalTransactionValue" : Decimal,
         "Timestamp" : DateTime,
         "Address" : 
         [ 
@@ -387,7 +390,8 @@ This API method allows you to update a transaction. This method should be used w
           "Quantity" : Int,
           "TotalBeforeTax" : Decimal,
           "TotalDiscount" : Decimal,
-          "TotalTax" : Decimal
+          "TotalTax" : Decimal,
+          "TotalItemValue" : Decimal
         }
         ]
       },
